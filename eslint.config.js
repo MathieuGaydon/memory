@@ -1,7 +1,5 @@
 import js from '@eslint/js'
 import globals from 'globals'
-import react from 'eslint-plugin-react'
-import reactHooks from 'eslint-plugin-react-hooks'
 
 export default [
   { ignores: ['dist'] },
@@ -16,15 +14,16 @@ export default [
         sourceType: 'module',
       },
     },
-    plugins: {
-      react,
-      'react-hooks': reactHooks,
-    },
+    plugins: ['react-hooks', 'react-refresh'],
     rules: {
       ...js.configs.recommended.rules,
-      ...react.configs.recommended.rules,
-      ...reactHooks.configs.recommended.rules,
-      'no-unused-vars': ['warn', { varsIgnorePattern: '^[A-Z_]' }],
+      ...require('eslint-plugin-react').configs.recommended.rules,
+      ...require('eslint-plugin-react-hooks').configs.recommended.rules,
+      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
     },
   },
 ]
