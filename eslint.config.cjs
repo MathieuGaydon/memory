@@ -15,15 +15,21 @@ module.exports = [
         ecmaFeatures: { jsx: true },
         sourceType: 'module',
       },
-    },
+      },
     plugins: {
       react,
-      'react-hooks': reactHooks,    },
+      'react-hooks': reactHooks,
+    },
     rules: {
       ...js.configs.recommended.rules,
       ...react.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+    },
+    settings: {
+      react: {
+        version: 'detect',
+      },
     },
   },
 ];
