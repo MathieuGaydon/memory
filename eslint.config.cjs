@@ -1,10 +1,12 @@
-const js = require('@eslint/js');
-const globals = require('globals');
-const react = require('eslint-plugin-react');
-const reactHooks = require('eslint-plugin-react-hooks');
+import js from '@eslint/js';
+import globals from 'globals';
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
 
-module.exports = [
-  { ignores: ['dist'] },
+export default [
+  {
+    ignores: ['dist'],
+  },
   {
     files: ['**/*.{js,jsx}'],
     languageOptions: {
@@ -15,7 +17,7 @@ module.exports = [
         ecmaFeatures: { jsx: true },
         sourceType: 'module',
       },
-      },
+    },
     plugins: {
       react,
       'react-hooks': reactHooks,

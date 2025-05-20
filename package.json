@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint src --max-warnings=0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "type": "module"
   },
   "dependencies": {
     "react": "^19.1.0",
