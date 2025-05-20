@@ -17,6 +17,7 @@ module.exports = [
       },
     },
     plugins: {
+      react,
       'react-hooks': reactHooks,    },
     rules: {
       ...js.configs.recommended.rules,
