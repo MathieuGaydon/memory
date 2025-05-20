@@ -2,12 +2,12 @@
   "name": "memory",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint src --max-warnings=0",
-    "preview": "vite preview",
-    "type": "module"
+    "preview": "vite preview"
   },
   "dependencies": {
     "react": "^19.1.0",
