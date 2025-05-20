@@ -1,11 +1,10 @@
-import js from '@eslint/js';
-import globals from 'globals';
-import reactRefresh from 'eslint-plugin-react-refresh';
+const js = require('@eslint/js');
+const globals = require('globals');
+const react = require('eslint-plugin-react');
+const reactHooks = require('eslint-plugin-react-hooks');
+const reactRefresh = require('eslint-plugin-react-refresh');
 
-const react = await import('eslint-plugin-react');
-const reactHooks = await import('eslint-plugin-react-hooks');
-
-export default [
+module.exports = [
   { ignores: ['dist'] },
   {
     files: ['**/*.{js,jsx}'],
@@ -19,13 +18,13 @@ export default [
       },
     },
     plugins: {
-      'react-hooks': reactHooks.default,
+      'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
     },
     rules: {
       ...js.configs.recommended.rules,
-      ...react.default.configs.recommended.rules,
-      ...reactHooks.default.configs.recommended.rules,
+      ...react.configs.recommended.rules,
+      ...reactHooks.configs.recommended.rules,
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
       'react-refresh/only-export-components': [
         'warn',
