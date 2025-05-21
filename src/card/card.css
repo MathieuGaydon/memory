@@ -1,9 +1,10 @@
 /* card.css */
 .card-container {
-    width: 129px;
-    height: 129px;
+    width: 100%;
+    aspect-ratio: 1/1;
     border-radius: 25px;
     perspective: 1000px; /* Perspective pour l'effet 3D */
+    overflow: hidden;
 }
 
 .card {
@@ -13,6 +14,8 @@
     transform-style: preserve-3d; /* Maintient l'effet 3D pour les enfants */
     transition: transform 0.5s ease; /* Animation de rotation */
     cursor: pointer;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Applique la rotation quand la carte est retournée */
@@ -36,6 +39,7 @@
 /* Face avant */
 .card-front {
     transform: rotateY(0deg);
+    background: #6b44a9; /* Couleur de fond pour la face recto */
 }
 
 /* Face arrière (retournée par défaut) */
@@ -49,6 +53,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover; /* Pour que l'image couvre bien toute la face */
+    border-radius: 25px;
 }
 
 /* Style pour la valeur affichée sur la carte (optionnel) */

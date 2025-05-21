@@ -1,12 +1,8 @@
-import { useState } from "react";
 import './card.css';
 
-function Card({ index, cardData, cardRecto, onCardFlip }) {
-    const [isFlipped, setIsFlipped] = useState(false);
-
+function Card({ index, cardData, cardRecto, isFlipped, onCardFlip }) {
     const handleClick = () => {
-        if (!isFlipped) {
-            setIsFlipped(true);
+        if (!isFlipped && !cardData.matched) {
             onCardFlip(index);
         }
     };
@@ -25,8 +21,6 @@ function Card({ index, cardData, cardRecto, onCardFlip }) {
                 {/* Face arrière (verso) */}
                 <div className="card-face card-back">
                     <img src={cardData.img} alt={`Carte ${cardData.id}`} />
-                    {/* Si vous voulez afficher la valeur sur la carte, décommentez ci-dessous */}
-                    {/* <div className="card-value">{cardData.value}</div> */}
                 </div>
             </div>
         </div>
