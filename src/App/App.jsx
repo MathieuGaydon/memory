@@ -84,11 +84,19 @@ function App() {
                 
                 setMatchedPairs(prev => prev + 1);
                 resetSelections();
+                
             } else {
                 setTimeout(() => resetSelections(), 1000);
             }
         }
     }, [firstSelection, secondSelection]);
+
+
+    useEffect(() => {
+        if (matchedPairs === CardVerso.length) {
+            alert("Vous avez gagné !");
+        }
+    })
     
     // Réinitialiser les sélections
     const resetSelections = () => {
