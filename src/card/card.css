@@ -1,0 +1,70 @@
+/* card.css */
+.card-container {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 25px;
+    perspective: 1000px; /* Perspective pour l'effet 3D */
+    overflow: hidden;
+}
+
+.card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d; /* Maintient l'effet 3D pour les enfants */
+    transition: transform 0.5s ease; /* Animation de rotation */
+    cursor: pointer;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Applique la rotation quand la carte est retournée */
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+/* Styles communs pour les deux faces */
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Cache la face arrière pendant la rotation */
+    border-radius: 25px;
+    overflow: hidden; /* Pour que les images respectent le border-radius */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Face avant */
+.card-front {
+    transform: rotateY(0deg);
+    background: #6b44a9; /* Couleur de fond pour la face recto */
+}
+
+/* Face arrière (retournée par défaut) */
+.card-back {
+    transform: rotateY(180deg);
+    position: relative; /* Pour permettre le positionnement de la valeur */
+}
+
+/* Style pour les images */
+.card-face img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Pour que l'image couvre bien toute la face */
+    border-radius: 25px;
+}
+
+/* Style pour la valeur affichée sur la carte (optionnel) */
+.card-value {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 14px;
+}
