@@ -12,7 +12,7 @@ function Card({ index, cardData, cardRecto, isFlipped, onCardFlip }) {
     return (
         <div className="card-container">
             <div 
-                className={`card ${isFlipped ? 'flipped' : ''}`} 
+                className={`card ${isFlipped ? 'flipped' : ''} ${cardData.matched ? 'matched' : ''}`} 
                 onClick={handleClick}
             >
                 {/* Face avant (recto) */}
