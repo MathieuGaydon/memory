@@ -3,16 +3,16 @@
     width: 100%;
     aspect-ratio: 1/1;
     border-radius: 25px;
-    perspective: 1000px; /* Perspective pour l'effet 3D */
-    overflow: hidden;
+    perspective: 1000px;
+    overflow: visible;
 }
 
 .card {
     position: relative;
     width: 100%;
     height: 100%;
-    transform-style: preserve-3d; /* Maintient l'effet 3D pour les enfants */
-    transition: transform 0.5s ease; /* Animation de rotation */
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease, box-shadow 0.3s ease; 
     cursor: pointer;
     border-radius: 25px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -23,14 +23,56 @@
     transform: rotateY(180deg);
 }
 
+/* Contour lumineux pour les cartes appariées */
+.card.matched {
+    position: relative;
+}
+
+/* Pseudo-élément pour créer le contour lumineux sans agrandir la carte */
+.card.matched::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 3px solid rgba(221, 221, 255, 0.9);
+    border-radius: 25px;
+    pointer-events: none; 
+    z-index: 10; 
+    box-shadow: 
+        inset 0 0 0 2px rgba(221, 221, 255, 0.6),   
+        0 0 15px rgba(221, 221, 255, 0.8),         
+        0 0 25px rgba(107, 68, 169, 0.6);           
+    animation: borderGlow 2s ease-in-out infinite alternate;
+}
+
+/* Animation de pulsation pour le contour */
+@keyframes borderGlow {
+    0% {
+        border-color: rgba(221, 221, 255, 0.9);;
+        box-shadow: 
+            inset 0 0 0 2px rgba(221, 221, 255, 0.6),
+            0 0 15px rgba(221, 221, 255, 0.8),
+            0 0 25px rgba(107, 68, 169, 0.6);
+    }
+    100% {
+        border-color: rgba(221, 221, 255, 1);;
+        box-shadow: 
+            inset 0 0 0 3px rgba(221, 221, 255, 0.8),
+            0 0 20px rgba(221, 221, 255, 0.9),
+            0 0 35px rgba(107, 68, 169, 0.8);
+    }
+}
+
 /* Styles communs pour les deux faces */
 .card-face {
     position: absolute;
     width: 100%;
     height: 100%;
-    backface-visibility: hidden; /* Cache la face arrière pendant la rotation */
+    backface-visibility: hidden; 
     border-radius: 25px;
-    overflow: hidden; /* Pour que les images respectent le border-radius */
+    overflow: hidden; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,21 +81,27 @@
 /* Face avant */
 .card-front {
     transform: rotateY(0deg);
-    background: #6b44a9; /* Couleur de fond pour la face recto */
+    background: #6b44a9; 
 }
 
 /* Face arrière (retournée par défaut) */
 .card-back {
     transform: rotateY(180deg);
-    position: relative; /* Pour permettre le positionnement de la valeur */
+    position: relative; 
 }
 
 /* Style pour les images */
 .card-face img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Pour que l'image couvre bien toute la face */
+    object-fit: cover;
     border-radius: 25px;
+}
+
+/* Effet de brillance sur l'image des cartes appariées */
+.card.matched .card-face img {
+    filter: brightness(1.1) saturate(1.2);
+    transition: filter 0.3s ease;
 }
 
 /* Style pour la valeur affichée sur la carte (optionnel) */
