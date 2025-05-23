@@ -8,21 +8,26 @@ function Card({ index, cardData, cardRecto, isFlipped, onCardFlip }) {
             onCardFlip(index);
         }
     };
+
+    const handleDragStart = (e) => {
+        e.preventDefault();
+    };
+
     
     return (
-        <div className="card-container">
+        <div className="card-container" draggable="true" onDragStart={handleDragStart}>
             <div 
                 className={`card ${isFlipped ? 'flipped' : ''} ${cardData.matched ? 'matched' : ''}`} 
                 onClick={handleClick}
             >
                 {/* Face avant (recto) */}
                 <div className="card-face card-front">
-                    <img src={cardRecto} alt="Recto" />
+                    <img src={cardRecto} alt="Recto" draggable={false}/>
                 </div>
                 
                 {/* Face arrière (verso) */}
                 <div className="card-face card-back">
-                    <img src={cardData.img} alt={`Carte ${cardData.id}`} />
+                    <img src={cardData.img} alt={`Carte ${cardData.id}`} draggable={false} />
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import './App.css';
 import Card from "../card/card.jsx";
-import Button from "../components/button.jsx";
+import Button from "../components/Button.jsx";
 import React from 'react';
 
 const CardVerso = [
