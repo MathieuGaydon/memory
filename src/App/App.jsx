@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import './App.css';
 import Card from "../card/card.jsx";
+import Button from "../components/button.jsx";
 import React from 'react';
 
 const CardVerso = [
@@ -128,7 +129,7 @@ function App() {
     };
     
     return (
-        <div className="game-container">
+        <div className="game-container h-auto">
             <div className="game-header">
                 <h1 className="game-title">Memory</h1>
                 <button className="sound-button" onClick={toggleSound}>
@@ -145,7 +146,8 @@ function App() {
                 </div>
             </div>
             
-            <div className="game-board">
+            <div className="game-board-container flex justify-end items-start w-full pr-10">
+                <div className="game-board">
                 {gameCards.map((card, index) => (
                     <Card 
                         key={card.id}
@@ -154,8 +156,13 @@ function App() {
                         cardRecto={CardRecto}
                         isFlipped={index === firstSelection || index === secondSelection || card.matched}
                         onCardFlip={() => handleCardFlip(index)}
-                    />
-                ))}
+                        />
+                    ))}
+                </div>
+
+                <div className="restart-button">
+                    <Button onClick={initializeGame}>Recommencer</Button>
+                </div>
             </div>
         </div>
     );
