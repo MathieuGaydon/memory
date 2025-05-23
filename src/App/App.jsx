@@ -90,7 +90,7 @@ function App() {
                 setTimeout(() => resetSelections(), 1000);
             }
         }
-    }, [firstSelection, secondSelection]);
+    }, [firstSelection, secondSelection, gameCards]);
 
 
     useEffect(() => {
