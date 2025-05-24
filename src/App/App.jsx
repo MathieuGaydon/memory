@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import './App.css';
 import Card from "../card/card.jsx";
-import Button from "../components/Button.jsx";
+import VictoryModal from "./VictoryModal.jsx"; 
 import React from 'react';
 
 const CardVerso = [
@@ -25,6 +25,7 @@ function App() {
     const [matchedPairs, setMatchedPairs] = useState(0);
     const [moveCount, setMoveCount] = useState(0);
     const [isSoundOn, setIsSoundOn] = useState(true);
+    const [showVictoryModal, setShowVictoryModal] = useState(false); 
     
     // Initialiser ou réinitialiser le jeu
     const initializeGame = () => {
@@ -58,6 +59,7 @@ function App() {
         setLocked(false);
         setMatchedPairs(0);
         setMoveCount(0);
+        setShowVictoryModal(false); // Fermer le modal lors de la réinitialisation
     };
     
     // Initialiser le jeu au premier chargement
@@ -93,12 +95,15 @@ function App() {
         }
     }, [firstSelection, secondSelection, gameCards]);
 
-
+    // Vérifier la condition de victoire (CORRIGÉ avec les dépendances)
     useEffect(() => {
-        if (matchedPairs === CardVerso.length) {
-            alert("Vous avez gagné !");
+        if (matchedPairs === CardVerso.length && matchedPairs > 0) {
+            // Petite pause avant d'afficher le modal pour laisser voir la dernière paire
+            setTimeout(() => {
+                setShowVictoryModal(true);
+            }, 500);
         }
-    })
+    }, [matchedPairs]); // Ajout du tableau de dépendances
     
     // Réinitialiser les sélections
     const resetSelections = () => {
@@ -127,9 +132,20 @@ function App() {
     const toggleSound = () => {
         setIsSoundOn(!isSoundOn);
     };
+
+    // Gérer le redémarrage depuis le modal
+    const handleRestart = () => {
+        setShowVictoryModal(false);
+        initializeGame();
+    };
+
+    // Fermer le modal de victoire
+    const handleCloseModal = () => {
+        setShowVictoryModal(false);
+    };
     
     return (
-        <div className="game-container h-auto">
+        <div className="game-container">
             <div className="game-header">
                 <h1 className="game-title">Memory</h1>
                 <button className="sound-button" onClick={toggleSound}>
@@ -146,8 +162,7 @@ function App() {
                 </div>
             </div>
             
-            <div className="game-board-container flex justify-end items-start w-full pr-10">
-                <div className="game-board">
+            <div className="game-board">
                 {gameCards.map((card, index) => (
                     <Card 
                         key={card.id}
@@ -156,14 +171,17 @@ function App() {
                         cardRecto={CardRecto}
                         isFlipped={index === firstSelection || index === secondSelection || card.matched}
                         onCardFlip={() => handleCardFlip(index)}
-                        />
-                    ))}
-                </div>
-
-                <div className="restart-button">
-                    <Button onClick={initializeGame}>Recommencer</Button>
-                </div>
+                    />
+                ))}
             </div>
+
+            {/* Modal de victoire */}
+            <VictoryModal 
+                isVisible={showVictoryModal}
+                moveCount={moveCount}
+                onRestart={handleRestart}
+                onClose={handleCloseModal}
+            />
         </div>
     );
 }
