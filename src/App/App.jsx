@@ -16,7 +16,7 @@ const CardVerso = [
 ];
 
 
-const CardRecto = "../public/card_recto/card_recto.png";
+const CardRecto = "/card_recto/card_recto.png";
 
 function App() {
     const [gameCards, setGameCards] = useState([]);
