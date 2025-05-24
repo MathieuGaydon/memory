@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import './App.css';
 import Card from "../card/card.jsx";
-import VictoryModal from "./VictoryModal.jsx";
 import Button from "../components/button.jsx"; 
 import React from 'react';
+import VictoryModal from "./VictoryModal.jsx";
 
 const CardVerso = [
     { id: 1, img: "../public/card_verso/kraken.png", value: 10 },
