@@ -1,5 +1,6 @@
 import React from 'react';
 import './VictoryModal.css';
+import PropTypes from 'prop-types';
 
 const VictoryModal = ({ isVisible, moveCount, onRestart, onClose }) => {
     if (!isVisible) return null;
@@ -56,6 +57,13 @@ const VictoryModal = ({ isVisible, moveCount, onRestart, onClose }) => {
             </div>
         </div>
     );
+};
+
+VictoryModal.propTypes = {
+    isVisible: PropTypes.bool.isRequired,
+    moveCount: PropTypes.number.isRequired,
+    onRestart: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired
 };
 
 export default VictoryModal;
