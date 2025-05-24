@@ -2,20 +2,22 @@ import { useState, useEffect } from "react";
 import './App.css';
 import Card from "../card/card.jsx";
 import VictoryModal from "./VictoryModal.jsx";
+import Button from "../components/button.jsx";
 import React from 'react';
 
 const CardVerso = [
-    { id: 1, img: "../public/card_verso/kraken.png", value: 10 },
-    { id: 2, img: "../public/card_verso/Sirene.png", value: 20 },
-    { id: 3, img: "../public/card_verso/leviathan.png", value: 30 },
-    { id: 4, img: "../public/card_verso/lockhness.png", value: 40 },
-    { id: 5, img: "../public/card_verso/jormungand.png", value: 50 },
-    { id: 6, img: "../public/card_verso/dragon.png", value: 60 },
-    { id: 7, img: "../public/card_verso/hydre.png", value: 70 },
-    { id: 8, img: "../public/card_verso/Hippocampe.png", value: 80 }
+    { id: 1, img: "/card_verso/kraken.png", value: 10 },
+    { id: 2, img: "/card_verso/Sirene.png", value: 20 },
+    { id: 3, img: "/card_verso/leviathan.png", value: 30 },
+    { id: 4, img: "/card_verso/lockhness.png", value: 40 },
+    { id: 5, img: "/card_verso/jormungand.png", value: 50 },
+    { id: 6, img: "/card_verso/dragon.png", value: 60 },
+    { id: 7, img: "/card_verso/hydre.png", value: 70 },
+    { id: 8, img: "/card_verso/Hippocampe.png", value: 80 }
 ];
 
-const CardRecto = "../public/card_recto/card_recto.png";
+
+const CardRecto = "/card_recto/card_recto.png";
 
 function App() {
     const [gameCards, setGameCards] = useState([]);
